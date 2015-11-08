@@ -7,8 +7,11 @@ app.controller('PlayerController', ['$scope', function($scope){
     $scope.playing = false;
     $scope.audio = document.createElement('audio');
     $scope.audio.src = '/media/npr.mp4';
-    $scope.play = function() {
-        $scope.audio.play();
+    $scope.play = function(program) {
+        if ($scope.playing) $scope.audio.pause();
+        var url = program.audio[0].format.mp4.$text;
+        audio.src = url
+        audio.play();
         $scope.playing = true;
     };
     $scope.stop = function() {
@@ -33,3 +36,19 @@ app.controller('PlayerController', ['$scope', function($scope){
 app.controller('RelatedController', ['$scope', function($scope){
     
 }]);
+
+app.directive('nprLink', function(){
+    return {
+        restrict: 'EA',
+        require: '[^ngModel]',
+        replace: true,
+        scope: {
+            ngModel: '=',
+            play: '&'
+        },
+        templateUrl: '/views/nprListItem.html',
+        link: function(scope, ele, attr){
+            scope.duration = scope.ngModel.audio[0].duration.$text;
+        }
+    }
+});
