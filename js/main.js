@@ -50,7 +50,11 @@ app.directive('nprLink', function() {
 app.directive('ngSparkline', function() {
     return {
         restrict: 'A',
-        require: '^ngModel',
-        template: '<div class="sparkline"><h4>Weather for {{ city }}</h4></div>'
+        require: '^ngCity',
+        scope: {
+            ngCity: '@'
+        },
+        template: '<div class="sparkline"><h4>Weather for {{ ngCity }}</h4></div>'
+        
     }
 });
