@@ -74,6 +74,8 @@ app.directive('ngSparkline', function() {
               weather.push(value);
             });
             $scope.weather = weather;
+          }).error(function(data){
+            console.log('Something went wrong at openweathermap');
           });
         };
       }],
