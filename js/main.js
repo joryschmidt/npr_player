@@ -18,7 +18,7 @@ app.controller('PlayerController', function($scope, $http){
     $scope.play = function(program) {
         if ($scope.playing) {
             $scope.audio.pause();
-            $scope.playing = false;
+            return $scope.playing = false;
         }
         var url = program.audio[0].format.mp4.$text;
         $scope.audio.src = url;
