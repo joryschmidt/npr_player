@@ -6,10 +6,11 @@
     </head>
     <body>
         <div ng-controller='PlayerController'>
-            Playing audio: <b>{{ playing }}</b>
+            Playing audio: <b>{{ player.playing }}</b><br/><br/>
+            <button player='player' ng-click='player.stop()'>Stop</button>
             <ul id="programs_list" class="">
               <li ng-repeat="program in programs">
-                <npr-link player='player' ng-model='program'></npr-link>
+                <npr-link ng-model='program'></npr-link>
               </li>
             </ul>
         </div>
